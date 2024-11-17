@@ -89,7 +89,7 @@ public final class Homepage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -107,8 +107,8 @@ public final class Homepage extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 92, -1, 538));
-        jPanel1.add(header1, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 0, 940, -1));
-        jPanel1.add(navbar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 630));
+        jPanel1.add(header1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, -1));
+        jPanel1.add(navbar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 58, -1, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
