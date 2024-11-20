@@ -11,6 +11,7 @@ package com.mycompany.vietpro;
 public class Vietpro {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Homepage homepage=new Homepage();
+        homepage.setVisible(true);
     }
 }

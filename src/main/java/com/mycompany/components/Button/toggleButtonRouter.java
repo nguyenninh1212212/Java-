@@ -8,7 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -19,27 +19,43 @@ public class toggleButtonRouter extends javax.swing.JPanel {
     /**
      * Creates new form toggleButtonRouter
      */
+
+
+      private Color defaultLabelColor = Color.BLACK; // Màu mặc định cho label
+    private Color selectedLabelColor =Color.pink; // Màu khi label được chọn (có thể thay đổi)
+
     public toggleButtonRouter() {
         initComponents();
     }
     
-    public void set(String text, JPanel mainPanel){
-     jLabel1.setText(text);
-     if (text.length() > 0) {
-        jLabel1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE)); // Tạo viền dưới màu trắng
-    } else {
-        jLabel1.setBorder(null); // Bỏ viền nếu text rỗng
-    }
-        jLabel1.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            CardLayout cl = (CardLayout) mainPanel.getLayout();
-            cl.show(mainPanel, text);
-        }
-        
-    });
     
-}
+
+    public JPanel getPanel() {
+        return jPanel1;
+    }
+
+    public JLabel getLabel() {
+        return jLabel1;
+    }
+
+  
+
+    public void set(String text, JPanel mainPanel, String img) {
+        jLabel1.setText(" "+text);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(img))); // NOI18N
+        jLabel1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Đổi màu nền của jLabel1 khi nhấn vào
+                
+                // Chuyển đổi panel theo CardLayout
+                CardLayout cl = (CardLayout) mainPanel.getLayout();
+                cl.show(mainPanel, text);
+            }
+        });
+    }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,16 +71,29 @@ public class toggleButtonRouter extends javax.swing.JPanel {
 
         setForeground(new java.awt.Color(255, 102, 51));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(200, 100));
 
-        jPanel1.setOpaque(false);
+        jPanel1.setBackground(new java.awt.Color(55, 65, 92));
         jPanel1.setPreferredSize(new java.awt.Dimension(140, 50));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(55, 65, 92));
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-menu-24.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 210, 30));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -74,7 +103,7 @@ public class toggleButtonRouter extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
