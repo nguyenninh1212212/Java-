@@ -105,7 +105,7 @@ public class ManagerOrders extends javax.swing.JPanel {
         jScrollPane1.setOpaque(false);
         jScrollPane1.setViewportView(rowOrder1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 1030, 210));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 1030, 210));
     }// </editor-fold>//GEN-END:initComponents
 
 

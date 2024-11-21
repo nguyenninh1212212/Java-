@@ -21,8 +21,7 @@ public class toggleButtonRouter extends javax.swing.JPanel {
      */
 
 
-      private Color defaultLabelColor = Color.BLACK; // Màu mặc định cho label
-    private Color selectedLabelColor =Color.pink; // Màu khi label được chọn (có thể thay đổi)
+  
 
     public toggleButtonRouter() {
         initComponents();
