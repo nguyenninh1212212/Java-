@@ -23,6 +23,7 @@ public class ManagerCategory extends javax.swing.JPanel  {
      */
     
     private boolean isOpen =false;
+    
     private Action ac=new Action();
 
     public ManagerCategory() {
@@ -47,7 +48,7 @@ public class ManagerCategory extends javax.swing.JPanel  {
         rowComponent.set(idCate,name);
         rowComponent.updateText();
         rowComponent.deleteCate(this::addRows);
-        panelRows.add(rowComponent);
+        panelRows.add(rowComponent,0);
     }
     jScrollPane1.setViewportView(panelRows);
     // Cập nhật lại giao diện sau khi thêm các dòng vào
@@ -60,7 +61,7 @@ public class ManagerCategory extends javax.swing.JPanel  {
 
 
 public void setPopUp(JFrame JP) {
-    jDialog1.setSize(500, 330);  
+    jDialog1.setSize(490, 330);  
     jDialog1.setResizable(false);
     jDialog1.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
     
@@ -78,7 +79,7 @@ void addCateToggle() {
             String text = jTextField1.getText();
             String result = ac.addCate(text);
             javax.swing.JOptionPane.showMessageDialog(null, result);
-            jLabel8.setText("");
+            jTextField1.setText("");
             // Tải lại danh sách
             addRows();
         }

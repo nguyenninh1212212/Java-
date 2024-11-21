@@ -44,6 +44,7 @@ public final class Homepage extends javax.swing.JFrame {
                 setLocation(e.getXOnScreen() - posX, e.getYOnScreen() - posY);
             }
         });
+        this.setLocationRelativeTo(null); 
         setUpPanels();
 
         
@@ -54,22 +55,22 @@ public final class Homepage extends javax.swing.JFrame {
     jPanel2.setLayout(cardlayout);
     ManagerProducts managerProducts=new ManagerProducts();
     managerProducts.setPopUp(this);
-    jPanel2.add(new Home(), "Home");
-    jPanel2.add(managerProducts, "Products");
-    jPanel2.add(new ManagerUser(),"Users");
-    jPanel2.add(new ManagerCategory(),"Categorys");
-    jPanel2.add(new ManagerOrders(),"Orders");
-    jPanel2.add(new ManagerComments(),"Comments");
+    jPanel2.add(new Home(), "Trang chủ");
+    jPanel2.add(managerProducts, "Sản phẩm");
+    jPanel2.add(new ManagerUser(),"Người dùng");
+    jPanel2.add(new ManagerCategory(),"Danh mục");
+    jPanel2.add(new ManagerOrders(),"Đơn hàng");
+    jPanel2.add(new ManagerComments(),"Bình luận");
     
     
-    cardlayout.show(jPanel2, "home");
+    cardlayout.show(jPanel2, "Trang chủ");
     //thiết lập điều hướng
-    navbar2.setRouter1(jPanel2, "Home");
-    navbar2.setRouter3(jPanel2, "Products");
-    navbar2.setRouter4(jPanel2, "Users");
-    navbar2.setRouter5(jPanel2, "Categorys");
-    navbar2.setRouter6(jPanel2, "Orders");
-    navbar2.setRouter7(jPanel2, "Comments");
+    navbar2.setRouter1(jPanel2, "Trang chủ");
+    navbar2.setRouter3(jPanel2, "Sản phẩm");
+    navbar2.setRouter4(jPanel2, "Người dùng");
+    navbar2.setRouter5(jPanel2, "Danh mục");
+    navbar2.setRouter6(jPanel2, "Đơn hàng");
+    navbar2.setRouter7(jPanel2, "Bình luận");
 
 
 }

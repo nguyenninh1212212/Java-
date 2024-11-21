@@ -5,7 +5,6 @@
 package com.mycompany.components.Button;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -76,7 +75,7 @@ public class toggleButtonRouter extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(140, 50));
 
         jLabel1.setBackground(new java.awt.Color(55, 65, 92));
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-menu-24.png"))); // NOI18N
         jLabel1.setText("jLabel1");

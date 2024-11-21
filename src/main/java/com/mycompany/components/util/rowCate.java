@@ -19,8 +19,7 @@ public class rowCate extends javax.swing.JPanel {
     /**
      * Creates new form rowCate
      */
-    private boolean isUpdate=false;
-    private boolean isDelete=false;
+
     private JTextField updateField ;
     private Action ac=new Action();
     private int id;
@@ -88,7 +87,6 @@ public void updateText() {
 }
 public void deleteCate(Runnable onSuccessCallback) {
     jToggleButton2.addActionListener(e -> {
-       
         int idlb1 = Integer.valueOf(jLabel1.getText());
         String result = ac.DeleteCate(idlb1);
         javax.swing.JOptionPane.showMessageDialog(null, result);
@@ -177,7 +175,6 @@ public void deleteCate(Runnable onSuccessCallback) {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
-        this.isDelete=true;
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
 
