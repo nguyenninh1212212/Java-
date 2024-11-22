@@ -63,9 +63,7 @@ public void setPopUp(JFrame JP) {
     jDialog1.setSize(560, 500);  
     jDialog1.setResizable(false);
     jDialog1.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-    // Đặt vị trí của jDialog1 ở giữa parent frame
     jDialog1.setLocationRelativeTo(JP); 
-    // Hiển thị hoặc ẩn jDialog1 dựa trên giá trị của isShowed
     jDialog1.setVisible(isShowed);
 }
 
@@ -117,8 +115,8 @@ void ImgUpLoad(){
         String nameCate  = (String) row[6]  ;
         rowComponent.set(idProduct, nameCate, name, price, thumbnail, status);
         panelRows.add(rowComponent,0);
+        rowComponent.updateProduct(this::addRows);
         deleteCate(rowComponent,rowComponent.getIdProduct());
-        
     }
     jScrollPane2.setViewportView(panelRows);
     // Cập nhật lại giao diện sau khi thêm các dòng vào
