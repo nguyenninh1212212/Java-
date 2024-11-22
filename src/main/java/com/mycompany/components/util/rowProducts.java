@@ -8,15 +8,13 @@ import Database.Action;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
@@ -31,13 +29,16 @@ public class rowProducts extends javax.swing.JPanel {
      */
     private int id;
     private boolean isUpdate =false;
-    private boolean isShowed=false;
-
     private Action ac=new Action();
+    private boolean isShowed=false;
+    private Option ops =new Option();  
+    private List<Object[]> categories =ac.getCate() ;
+
     public rowProducts() {
         initComponents();
         buttonShowDialog();
         ImgUpLoad();
+        initializeForm();
         image.setSize(100,167);
         image.setPreferredSize(new java.awt.Dimension(100,167));
         image.setMaximumSize(new java.awt.Dimension(100,167));
@@ -118,34 +119,126 @@ public void set(int id, String cate, String name, float price, String thumbnail,
     jLabel5.setText(cate);
 }
 
-//void update(){
-//    updateToggleRp.addMouseListener(new java.awt.event.MouseAdapter() {
-//        @Override
-//        public void mouseClicked(java.awt.event.MouseEvent e) {
-//            // Directly get the text from the nameProduct field
-//            String names = jTextField2.getText();  
-//            if (names.isEmpty()) {
-//                javax.swing.JOptionPane.showMessageDialog(null, "Product name cannot be empty.");
-//                return;  // Exit if the product name is empty
-//            }
-//            float price = Float.valueOf(pricePro.getText());
-//            File selectedFile = jFileChooser1.getSelectedFile();
-//            String thumbnail = selectedFile.getAbsolutePath();
-//            System.out.println(".mouseClicked() : " + thumbnail);
-//            
-//
-//            String selectedStatus = (String) statusBox.getSelectedItem();
-//            String selectedCate = (String) CateBox.getSelectedItem();
-//            String result = ac.addProduct(names, selectedCate, thumbnail, selectedStatus, price);
-//            javax.swing.JOptionPane.showMessageDialog(null, result);
-//            
-//            addRows();
-//        }
-//    });
-//}
+void initializeForm() {
+    StatusBox.setModel(new DefaultComboBoxModel<>(ops.StatusOptions()));
+    CateBox.setModel(new DefaultComboBoxModel<>(cateList().toArray(new String[0])));
+}
+
+List<String> cateList(){
+        List<String> catelist = new ArrayList<>();
+        for (Object[] row : categories) {
+             String nameCate = (String) row[1];
+             catelist.add(nameCate);
+            }
+        return catelist;
+    }
+ 
+
+public void updateProduct(Runnable onSuccessCallbac){
+    updateToggleRp.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            // Directly get the text from the nameProduct field
+            String names = namechange.getText();
+            float price = Float.valueOf(pricePro.getText());
+            if (names.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Tên sản phẩm không được để trống");
+                return;  
+            }
+
+            File selectedFile = jFileChooser1.getSelectedFile();
+            if (selectedFile == null) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng chọn một ảnh đại diện");
+                return;
+            }
+            
+            String thumbnail = selectedFile.getAbsolutePath();
+            int idProduct = Integer.valueOf(jLabel1.getText());
+
+            String selectedStatus = (String) StatusBox.getSelectedItem();
+            String selectedCate = (String) CateBox.getSelectedItem();
+            String result = ac.updateProduct(names, price, thumbnail, selectedStatus, selectedCate, idProduct);
+            javax.swing.JOptionPane.showMessageDialog(null, result);
+            onSuccessCallbac.run();
+        }
+    });
+}
 
 
-    /**
+    /**D
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -160,15 +253,15 @@ public void set(int id, String cate, String name, float price, String thumbnail,
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        namechange = new javax.swing.JTextField();
+        pricePro = new javax.swing.JTextField();
+        StatusBox = new javax.swing.JComboBox<>();
         updateToggleRp = new javax.swing.JToggleButton();
         jLabel13 = new javax.swing.JLabel();
         jToggleButton5 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        CateBox = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jDialog2 = new javax.swing.JDialog();
         jFileChooser1 = new javax.swing.JFileChooser();
@@ -201,14 +294,19 @@ public void set(int id, String cate, String name, float price, String thumbnail,
         jLabel11.setText("Trạng thái: ");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, -1));
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 120, 36));
+        namechange.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        namechange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namechangeActionPerformed(evt);
+            }
+        });
+        jPanel3.add(namechange, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 120, 36));
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 150, 24));
+        pricePro.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel3.add(pricePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 150, 24));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 90, -1));
+        StatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(StatusBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 90, -1));
 
         updateToggleRp.setBackground(new java.awt.Color(55, 65, 92));
         updateToggleRp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -260,12 +358,12 @@ public void set(int id, String cate, String name, float price, String thumbnail,
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 60));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 90, -1));
+        CateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(CateBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 90, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("Loại :");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 70, -1));
+        jLabel12.setText("Danh mục:");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 90, -1));
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -386,18 +484,19 @@ public void set(int id, String cate, String name, float price, String thumbnail,
 
     private void updateToggleRpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateToggleRpActionPerformed
         // TODO add your handling code here:
-        jTextField3.setText("");
-        jTextField5.setText("");
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-online-24.png")));
     }//GEN-LAST:event_updateToggleRpActionPerformed
+
+    private void namechangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namechangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namechangeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CateBox;
+    private javax.swing.JComboBox<String> StatusBox;
     private javax.swing.JToggleButton UpdateToggle;
     private javax.swing.JToggleButton deletetoggle;
     private javax.swing.JLabel image;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFileChooser jFileChooser1;
@@ -416,9 +515,9 @@ public void set(int id, String cate, String name, float price, String thumbnail,
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JTextField namechange;
+    private javax.swing.JTextField pricePro;
     private javax.swing.JToggleButton updateToggleRp;
     // End of variables declaration//GEN-END:variables
 }

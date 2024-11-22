@@ -54,7 +54,7 @@ public class Action {
         statement.setString(1, title); // Gán giá trị cho title
         statement.setInt(2, id); // Gán giá trị cho id
         int rowsUpdated = statement.executeUpdate(); // Thực thi lệnh UPDATE
-        return rowsUpdated > 0 ? "Update successful" : "Update failed";
+        return rowsUpdated > 0 ? "CẬP NHẬT THÀNH CÔNG" : "CẬP NHẬT THẤT BẠI";
     } catch (Exception e) {
         e.printStackTrace();
         return "An error occurred: " + e.getMessage();
@@ -70,7 +70,7 @@ public class Action {
         statement.setString(1, title); // Gán giá trị cho title
         statement.setString(2, "Dien thoai"); // Gán giá trị cho id
         int rowsUpdated = statement.executeUpdate(); // Thực thi lệnh UPDATE
-        return rowsUpdated > 0 ? "insert successful" : "insert failed";
+        return rowsUpdated > 0 ? "THÀNH CÔNG" : "THÊM THẤT BẠI";
     } catch (Exception e) {
         e.printStackTrace();
         return "An error occurred: " + e.getMessage();
@@ -84,7 +84,7 @@ public class Action {
     ) {
         statement.setInt(1, id); // Gán giá trị cho title
         int rowsUpdated = statement.executeUpdate(); // Thực thi lệnh UPDATE
-        return rowsUpdated > 0 ? "delete successful" : "delete failed";
+        return rowsUpdated > 0 ? "XÓA THÀNH CÔNG" : "xÓA THẤT BẠI";
     } catch (Exception e) {
         e.printStackTrace();
         return "An error occurred: " + e.getMessage();
@@ -163,7 +163,7 @@ public class Action {
 
                 
         int rowsUpdated = statement.executeUpdate(); // Thực thi lệnh UPDATE
-        return rowsUpdated > 0 ? "insert successful" : "insert failed";
+        return rowsUpdated > 0 ? "THÀNH CÔNG" : "THÊM THẤT BẠI";
     } catch (Exception e) {
         e.printStackTrace();
         return "An error occurred: " + e.getMessage();
@@ -178,11 +178,37 @@ public class Action {
     ) {
         statement.setInt(1, id); // Gán giá trị cho title
         int rowsUpdated = statement.executeUpdate(); 
-        return rowsUpdated > 0 ? "delete successful" : "delete failed";
+        return rowsUpdated > 0 ? "THÊM THÀNH CÔNG" : "THÊM THẤT BẠI";
     } catch (Exception e) {
         e.printStackTrace();
         return "An error occurred: " + e.getMessage();
     }
        } 
-    
+    public String updateProduct(String names,float price,String thumbnail,String selectedStatus,String selectedCate,int idProduct){
+        String query ="UPDATE products SET name = ?,SET thumbnail =? ,SET price =?,SET status =?,SET idCate =? WHERE idProduct = ? ";
+        String queryIdCate="SELECT idCate FROM categories WHERE title = ?";
+
+        try (
+        PreparedStatement statement = connection.prepareStatement(query);
+        PreparedStatement findIdCate=connection.prepareStatement(queryIdCate);
+    ) {
+        statement.setString(0, names); // Gán giá trị cho title
+        ResultSet rs = findIdCate.executeQuery();
+        int idCate = 0;
+        if (rs.next()) {
+            idCate = rs.getInt("idCate");
+        } else {
+            return "Category not found!";
+        }        
+        statement.setString(1, thumbnail); // Gán giá trị cho id
+        statement.setString(2, selectedStatus); // Gán giá trị cho id
+        statement.setInt(3, idCate); // Gán giá trị cho id
+        statement.setInt(4, idProduct); // Gán giá trị cho id
+        int rowsUpdated = statement.executeUpdate(); // Thực thi lệnh UPDATE
+        return rowsUpdated > 0 ? "CẬP NHẬT THÀNH CÔNG" : "CẬP NHẬT THẤT BẠI";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "An error occurred: " + e.getMessage();
+    }
+        }  
     }

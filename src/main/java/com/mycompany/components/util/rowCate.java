@@ -88,7 +88,7 @@ public void updateText() {
 public void deleteCate(Runnable onSuccessCallback) {
     jToggleButton2.addActionListener(e -> {
         int idlb1 = Integer.valueOf(jLabel1.getText());
-        String result = ac.DeleteCate(idlb1);
+        String result = ac.DeleteCate   (idlb1);
         javax.swing.JOptionPane.showMessageDialog(null, result);
         onSuccessCallback.run();  
     });
